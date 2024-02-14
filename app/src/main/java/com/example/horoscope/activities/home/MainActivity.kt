@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity() {
 
         adapter = HoroscopeAdapter(horoscopeList)
 
-        //recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        //recyclerView.layoutManager = GridLayoutManager(this, 2)
 
         recyclerView.adapter = adapter
     }
