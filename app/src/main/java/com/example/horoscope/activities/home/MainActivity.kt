@@ -2,6 +2,7 @@ package com.example.horoscope.activities.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.horoscope.R
@@ -12,7 +13,17 @@ class MainActivity : AppCompatActivity() {
 
     var horoscopeList:List<Horoscope> = listOf(
         Horoscope.Aries,
-        Horoscope.Taurus
+        Horoscope.Taurus,
+        Horoscope.Gemini,
+        Horoscope.Cancer,
+        Horoscope.Leo,
+        Horoscope.Virgo,
+        Horoscope.Libra,
+        Horoscope.Scorpio,
+        Horoscope.Sagittarius,
+        Horoscope.Capricorn,
+        Horoscope.Aquarius,
+        Horoscope.Pisces
     )
 
     lateinit var adapter:HoroscopeAdapter
@@ -31,7 +42,9 @@ class MainActivity : AppCompatActivity() {
 
         adapter = HoroscopeAdapter(horoscopeList)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        //recyclerView.layoutManager = LinearLayoutManager(this)
+
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
 
         recyclerView.adapter = adapter
     }
