@@ -14,8 +14,10 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/purple_700"
+        android:background="@color/white"
         android:gravity="center"
-        android:layout_marginVertical="10dp"
+        android:textAllCaps="true"
+        android:padding="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/recyclerView"/>
