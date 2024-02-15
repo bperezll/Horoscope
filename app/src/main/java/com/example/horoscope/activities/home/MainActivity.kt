@@ -1,11 +1,15 @@
 package com.example.horoscope.activities.home
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.horoscope.R
+import com.example.horoscope.activities.DetailActivity
 import com.example.horoscope.adapters.HoroscopeAdapter
 import com.example.horoscope.data.Horoscope
 
@@ -40,7 +44,9 @@ class MainActivity : AppCompatActivity() {
     fun initView() {
         recyclerView = findViewById(R.id.recyclerView)
 
-        adapter = HoroscopeAdapter(horoscopeList)
+        adapter = HoroscopeAdapter(horoscopeList) {
+            onItemClickListener(it)
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -48,5 +54,16 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
     }
-}
 
+    private fun onItemClickListener(position:Int) {
+        val horoscope:Horoscope = horoscopeList[position]
+
+        // val context:Context = this
+
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("HOROSCOPE_NAME", getString(horoscope.name))
+        startActivity(intent)
+
+        //Toast.makeText(this, getString(horoscope.name), Toast.LENGTH_LONG).show()
+    }
+}
