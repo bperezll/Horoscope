@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+
         recyclerView = findViewById(R.id.recyclerView)
 
         adapter = HoroscopeAdapter(horoscopeList) {
@@ -54,14 +55,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onItemClickListener(position:Int) {
-        val horoscope:Horoscope = horoscopeList[position]
 
-        // val context:Context = this
+        // Intent to go to the DetailActivity
+
+        val horoscope:Horoscope = horoscopeList[position]
 
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra("HOROSCOPE_NAME", getString(horoscope.name))
         startActivity(intent)
 
         //Toast.makeText(this, getString(horoscope.name), Toast.LENGTH_LONG).show()
+
     }
 }
