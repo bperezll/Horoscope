@@ -1,11 +1,8 @@
 package com.example.horoscope.activities.home
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.horoscope.R
@@ -15,7 +12,7 @@ import com.example.horoscope.data.Horoscope
 
 class MainActivity : AppCompatActivity() {
 
-    var horoscopeList:List<Horoscope> = listOf(
+    private var horoscopeList:List<Horoscope> = listOf(
         Horoscope.Aries,
         Horoscope.Taurus,
         Horoscope.Gemini,
@@ -30,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         Horoscope.Pisces
     )
 
-    lateinit var adapter:HoroscopeAdapter
+    private lateinit var adapter:HoroscopeAdapter
 
-    lateinit var  recyclerView:RecyclerView
+    private lateinit var  recyclerView:RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         initView()
 
     }
-    fun initView() {
+
+    private fun initView() {
         recyclerView = findViewById(R.id.recyclerView)
 
         adapter = HoroscopeAdapter(horoscopeList) {

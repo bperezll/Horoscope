@@ -7,7 +7,7 @@ import com.example.horoscope.R
 
 class DetailActivity : AppCompatActivity() {
 
-    lateinit var horoscopeTextView:TextView
+    private lateinit var horoscopeTextView:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -17,7 +17,5 @@ class DetailActivity : AppCompatActivity() {
         val name = intent.getStringExtra("HOROSCOPE_NAME")
 
         horoscopeTextView.text = name
-
-
     }
 }

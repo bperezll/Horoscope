@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.horoscope.R
 import com.example.horoscope.data.Horoscope
 
-class HoroscopeAdapter(val items:List<Horoscope> = listOf(), val onClickListener : (position:Int) -> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
+class HoroscopeAdapter(private val items:List<Horoscope> = listOf(), val onClickListener : (position:Int) -> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoroscopeViewHolder {
         val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_horoscope, parent, false)
         return HoroscopeViewHolder(view)
@@ -24,17 +24,15 @@ class HoroscopeAdapter(val items:List<Horoscope> = listOf(), val onClickListener
         holder.render(items[position])
         holder.itemView.setOnClickListener { onClickListener(position) }
     }
-
 }
 
 class HoroscopeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    val horoscopeImageView:ImageView = view.findViewById(R.id.horoscopeImageView)
-    val horoscopeTextView:TextView = view.findViewById(R.id.horoscopeTextView)
+    private val horoscopeImageView:ImageView = view.findViewById(R.id.horoscopeImageView)
+    private val horoscopeTextView:TextView = view.findViewById(R.id.horoscopeTextView)
     fun render(horoscope: Horoscope) {
         val context:Context = itemView.context
         horoscopeTextView.text = context.getString(horoscope.name)
         horoscopeImageView.setImageResource(horoscope.image)
     }
-
 }
