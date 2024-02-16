@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Horoscope"
         tools:targetApi="31">
         <activity
-            android:name=".activities.DetailActivity"
+            android:name=".activities.detail.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.home.MainActivity"
+            android:name=".activities.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

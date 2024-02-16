@@ -1,4 +1,4 @@
-package com.example.horoscope.activities.home
+package com.example.horoscope.activities.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.horoscope.R
-import com.example.horoscope.activities.DetailActivity
+import com.example.horoscope.activities.detail.DetailActivity
 import com.example.horoscope.adapters.HoroscopeAdapter
 import com.example.horoscope.data.Horoscope
 
@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra("HOROSCOPE_NAME", getString(horoscope.name))
+        intent.putExtra("HOROSCOPE_IMAGE", horoscope.image)
         startActivity(intent)
 
         //Toast.makeText(this, getString(horoscope.name), Toast.LENGTH_LONG).show()
