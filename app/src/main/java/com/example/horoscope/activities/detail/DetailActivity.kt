@@ -1,11 +1,9 @@
 package com.example.horoscope.activities.detail
 
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.graphics.drawable.toDrawable
+import androidx.appcompat.app.AppCompatActivity
 import com.example.horoscope.R
 import com.example.horoscope.data.Horoscope.Aquarius.image
 
