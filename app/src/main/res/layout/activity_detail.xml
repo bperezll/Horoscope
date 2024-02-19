@@ -33,9 +33,11 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
+        android:id="@+id/horoscopeLuckTextView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:text="Aquí va el texto final de cada signo"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horoscopeTextView"/>
 

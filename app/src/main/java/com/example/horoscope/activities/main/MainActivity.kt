@@ -61,8 +61,12 @@ class MainActivity : AppCompatActivity() {
         val horoscope:Horoscope = horoscopeList[position]
 
         val intent = Intent(this, DetailActivity::class.java)
+
+        // Adding dynamically parts of Horoscope class
+
         intent.putExtra("HOROSCOPE_NAME", getString(horoscope.name))
         intent.putExtra("HOROSCOPE_IMAGE", horoscope.image)
+
         startActivity(intent)
 
         //Toast.makeText(this, getString(horoscope.name), Toast.LENGTH_LONG).show()
