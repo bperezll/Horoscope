@@ -15,6 +15,10 @@ class HoroscopeProvider {
         var connection: HttpsURLConnection? = null
         var result: String? = null
 
+
+        var date: String? = null // Añadido por mi
+
+
         try {
             // Crear la conexión HTTP
             connection = url.openConnection() as HttpsURLConnection
@@ -29,6 +33,7 @@ class HoroscopeProvider {
 
                 val responseObject: JSONObject = JSONObject(response.toString())
                 result = responseObject.getJSONObject("data").getString("horoscope_data")
+                date = responseObject.getJSONObject("data").getString("date") // Añadido por mi
             } else {
                 Log.i("HTTP", "Error en la solicitud. Código de respuesta: $responseCode")
             }
@@ -40,6 +45,7 @@ class HoroscopeProvider {
             connection?.disconnect()
         }
         return result
+        return date // Añadido por mi
     }
 
     private fun readStream (inputStream: InputStream) : StringBuilder {
