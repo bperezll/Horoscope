@@ -44,8 +44,8 @@ class HoroscopeProvider {
             // Cerrar la conexión
             connection?.disconnect()
         }
-        return result
-        return date // Añadido por mi
+        return "$date \n $result" // + date Añadido por mi
+
     }
 
     private fun readStream (inputStream: InputStream) : StringBuilder {

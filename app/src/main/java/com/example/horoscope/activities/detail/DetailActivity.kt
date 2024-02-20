@@ -15,9 +15,13 @@ class DetailActivity : AppCompatActivity() {
 
     var horoscopeName:String? = null
 
+    // Nueva línea
+    //var horoscopeDate:String? = null
+
     private lateinit var horoscopeTextView:TextView
     private lateinit var horoscopeImageView:ImageView
     private lateinit var horoscopeLuckTextView:TextView
+    //private lateinit var horoscopeDateTextView:TextView // Nueva línea
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,13 +52,17 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
 
-
         //
 
         horoscopeName = intent.getStringExtra("HOROSCOPE_NAME")
 
         horoscopeTextView.text = horoscopeName
 
+        //horoscopeDateTextView = findViewById(R.id.horoscopeDateTextView) // Nueva línea
+
+        //horoscopeDate = intent.getStringExtra("HOROSCOPE_DATE") // Nueva linea
+
+        //horoscopeDateTextView.text = horoscopeDate
 
         getHoroscopeLuck()
     }
@@ -63,9 +71,12 @@ class DetailActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             // Llamada en segundo plano
             val result = HoroscopeProvider().getHoroscopeLuck(horoscopeName!!)
+            //val date = HoroscopeProvider().getHoroscopeLuck(horoscopeDate!!)
             runOnUiThread {
                 // Modificar UI
                 horoscopeLuckTextView.text = result
+                //horoscopeDateTextView.text = date
+                //horoscopeDateTextView.text = date
             }
         }
     }
