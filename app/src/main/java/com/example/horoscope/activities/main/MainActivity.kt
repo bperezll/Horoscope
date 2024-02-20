@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         intent.putExtra("HOROSCOPE_NAME", getString(horoscope.name))
         intent.putExtra("HOROSCOPE_IMAGE", horoscope.image)
+        intent.putExtra("HOROSCOPE_DATE", getString(horoscope.date))
 
         startActivity(intent)
 

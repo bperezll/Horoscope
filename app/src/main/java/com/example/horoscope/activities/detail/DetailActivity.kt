@@ -21,7 +21,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var horoscopeTextView:TextView
     private lateinit var horoscopeImageView:ImageView
     private lateinit var horoscopeLuckTextView:TextView
-    //private lateinit var horoscopeDateTextView:TextView // Nueva línea
+    private lateinit var horoscopeDateTextView:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,19 +50,22 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeImageView.setImageResource(image)
 
-        horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
+        // Display date range text of the sign
+
+        horoscopeDateTextView = findViewById(R.id.horoscopeDateTextView)
+
+        val date = intent.getStringExtra("HOROSCOPE_DATE")
+
+        horoscopeDateTextView.text = date
 
         //
+
+        horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
 
         horoscopeName = intent.getStringExtra("HOROSCOPE_NAME")
 
         horoscopeTextView.text = horoscopeName
 
-        //horoscopeDateTextView = findViewById(R.id.horoscopeDateTextView) // Nueva línea
-
-        //horoscopeDate = intent.getStringExtra("HOROSCOPE_DATE") // Nueva linea
-
-        //horoscopeDateTextView.text = horoscopeDate
 
         getHoroscopeLuck()
     }
@@ -71,12 +74,9 @@ class DetailActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             // Llamada en segundo plano
             val result = HoroscopeProvider().getHoroscopeLuck(horoscopeName!!)
-            //val date = HoroscopeProvider().getHoroscopeLuck(horoscopeDate!!)
             runOnUiThread {
                 // Modificar UI
                 horoscopeLuckTextView.text = result
-                //horoscopeDateTextView.text = date
-                //horoscopeDateTextView.text = date
             }
         }
     }
