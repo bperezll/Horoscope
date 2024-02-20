@@ -13,10 +13,9 @@ import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
 
-    var horoscopeName:String? = null
+    // To use with coroutine for the API text
 
-    // Nueva línea
-    //var horoscopeDate:String? = null
+    var horoscopeName:String? = null
 
     private lateinit var horoscopeTextView:TextView
     private lateinit var horoscopeImageView:ImageView
@@ -28,12 +27,11 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         initView()
-
     }
 
     private fun initView() {
 
-        // Display the selected zodiac sign
+        // Display the selected Zodiac sign
 
         horoscopeTextView = findViewById(R.id.horoscopeTextView)
 
@@ -41,8 +39,7 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeTextView.text = name
 
-
-        // Display the selected zodiac icon
+        // Display the selected Zodiac icon
 
         horoscopeImageView = findViewById(R.id.horoscopeImageView)
 
@@ -58,7 +55,7 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeDateTextView.text = date
 
-        //
+        // To display the API text of Zodiac signs
 
         horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
 
@@ -66,6 +63,7 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeTextView.text = horoscopeName
 
+        // Run coroutine
 
         getHoroscopeLuck()
     }

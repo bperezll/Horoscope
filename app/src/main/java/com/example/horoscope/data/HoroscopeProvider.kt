@@ -10,6 +10,24 @@ import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
 class HoroscopeProvider {
+
+    class HoroscopeList {
+        var horoscopeList:List<Horoscope> = listOf(
+            Horoscope.Aries,
+            Horoscope.Taurus,
+            Horoscope.Gemini,
+            Horoscope.Cancer,
+            Horoscope.Leo,
+            Horoscope.Virgo,
+            Horoscope.Libra,
+            Horoscope.Scorpio,
+            Horoscope.Sagittarius,
+            Horoscope.Capricorn,
+            Horoscope.Aquarius,
+            Horoscope.Pisces
+        )
+    }
+
     suspend fun getHoroscopeLuck(horoscopeId: String): String? {
         val url = URL("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=$horoscopeId&day=TODAY") // URL de la API o endpoint
         var connection: HttpsURLConnection? = null

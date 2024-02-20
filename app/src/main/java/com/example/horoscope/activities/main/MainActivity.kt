@@ -9,23 +9,9 @@ import com.example.horoscope.R
 import com.example.horoscope.activities.detail.DetailActivity
 import com.example.horoscope.adapters.HoroscopeAdapter
 import com.example.horoscope.data.Horoscope
+import com.example.horoscope.data.HoroscopeProvider
 
 class MainActivity : AppCompatActivity() {
-
-    private var horoscopeList:List<Horoscope> = listOf(
-        Horoscope.Aries,
-        Horoscope.Taurus,
-        Horoscope.Gemini,
-        Horoscope.Cancer,
-        Horoscope.Leo,
-        Horoscope.Virgo,
-        Horoscope.Libra,
-        Horoscope.Scorpio,
-        Horoscope.Sagittarius,
-        Horoscope.Capricorn,
-        Horoscope.Aquarius,
-        Horoscope.Pisces
-    )
 
     private lateinit var adapter:HoroscopeAdapter
 
@@ -43,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
 
-        adapter = HoroscopeAdapter(horoscopeList) {
+        adapter = HoroscopeAdapter(HoroscopeProvider.HoroscopeList().horoscopeList) {
             onItemClickListener(it)
         }
 
@@ -58,13 +44,14 @@ class MainActivity : AppCompatActivity() {
 
         // Intent to go to the DetailActivity
 
-        val horoscope:Horoscope = horoscopeList[position]
+        val horoscope:Horoscope = HoroscopeProvider.HoroscopeList().horoscopeList[position]
 
         val intent = Intent(this, DetailActivity::class.java)
 
         // Adding dynamically parts of Horoscope class
 
         intent.putExtra("HOROSCOPE_NAME", getString(horoscope.name))
+        intent.putExtra("HOROSCOPE_ID", horoscope.id)
         intent.putExtra("HOROSCOPE_IMAGE", horoscope.image)
         intent.putExtra("HOROSCOPE_DATE", getString(horoscope.date))
 
