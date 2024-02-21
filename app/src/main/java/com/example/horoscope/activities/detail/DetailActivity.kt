@@ -2,6 +2,7 @@ package com.example.horoscope.activities.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,9 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+
+        // Show back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // Get the ID of every Zodiac sign, only intent needed
 
@@ -74,5 +78,16 @@ class DetailActivity : AppCompatActivity() {
                 horoscopeLuckTextView.text = result
             }
         }
+    }
+
+    // This event will enable the back function to the button on press
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
