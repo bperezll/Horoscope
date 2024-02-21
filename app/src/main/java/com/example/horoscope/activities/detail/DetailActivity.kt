@@ -18,6 +18,7 @@ class DetailActivity : AppCompatActivity() {
     // To use with coroutine for the API text
 
     private var horoscopeId:String? = null
+
     private lateinit var horoscope: Horoscope
 
     private lateinit var horoscopeTextView:TextView
@@ -34,7 +35,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() {
 
-        // Get the ID of every Zodiac sign
+        // Get the ID of every Zodiac sign, only intent needed
 
         horoscopeId = intent.getStringExtra("HOROSCOPE_ID")
         horoscope = HoroscopeProvider().getHoroscope(horoscopeId!!)
@@ -42,33 +43,21 @@ class DetailActivity : AppCompatActivity() {
         // Display the selected Zodiac sign
 
         horoscopeTextView = findViewById(R.id.horoscopeTextView)
-
-        val name = intent.getStringExtra("HOROSCOPE_NAME")
-
-        horoscopeTextView.text = name
+        horoscopeTextView.text = getString(horoscope.name)
 
         // Display the selected Zodiac icon
 
         horoscopeImageView = findViewById(R.id.horoscopeImageView)
-
-        val image = intent.getIntExtra("HOROSCOPE_IMAGE", image)
-
-        horoscopeImageView.setImageResource(image)
+        horoscopeImageView.setImageResource(horoscope.image)
 
         // Display date range text of the sign
 
         horoscopeDateTextView = findViewById(R.id.horoscopeDateTextView)
-
-        val date = intent.getStringExtra("HOROSCOPE_DATE")
-
-        horoscopeDateTextView.text = date
+        horoscopeDateTextView.text = getString(horoscope.date)
 
         // Display the API text of Zodiac signs
 
         horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
-
-        horoscopeId = intent.getStringExtra("HOROSCOPE_NAME")
-
         horoscopeTextView.text = horoscopeId
 
         // Run coroutine

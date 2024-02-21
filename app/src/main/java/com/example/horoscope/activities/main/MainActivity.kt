@@ -95,12 +95,9 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, DetailActivity::class.java)
 
-        // Adding dynamically parts of Horoscope class
+        // Adding dynamically ID of Horoscope class
 
-        intent.putExtra("HOROSCOPE_NAME", getString(horoscope.name))
         intent.putExtra("HOROSCOPE_ID", horoscope.id)
-        intent.putExtra("HOROSCOPE_IMAGE", horoscope.image)
-        intent.putExtra("HOROSCOPE_DATE", getString(horoscope.date))
 
         startActivity(intent)
 
