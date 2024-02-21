@@ -28,6 +28,10 @@ class HoroscopeProvider {
         )
     }
 
+    fun getHoroscope(id: String): Horoscope {
+        return HoroscopeList().horoscopeList.first { it.id == id }
+    }
+
     suspend fun getHoroscopeLuck(horoscopeId: String): String? {
         val url = URL("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=$horoscopeId&day=TODAY") // URL de la API o endpoint
         var connection: HttpsURLConnection? = null
@@ -36,6 +40,7 @@ class HoroscopeProvider {
         try {
             // Crear la conexión HTTP
             connection = url.openConnection() as HttpsURLConnection
+            connection.connectTimeout = 10000
             connection.requestMethod = "GET" // Establecer el método GET
             connection.setRequestProperty("Accept", "application/json") // Establecer el tipo de contenido
 

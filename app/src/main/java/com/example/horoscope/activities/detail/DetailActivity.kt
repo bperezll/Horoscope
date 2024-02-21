@@ -1,10 +1,12 @@
 package com.example.horoscope.activities.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.horoscope.R
+import com.example.horoscope.data.Horoscope
 import com.example.horoscope.data.Horoscope.Aquarius.image
 import com.example.horoscope.data.HoroscopeProvider
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +17,8 @@ class DetailActivity : AppCompatActivity() {
 
     // To use with coroutine for the API text
 
-    var horoscopeName:String? = null
+    private var horoscopeId:String? = null
+    private lateinit var horoscope: Horoscope
 
     private lateinit var horoscopeTextView:TextView
     private lateinit var horoscopeImageView:ImageView
@@ -30,6 +33,9 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+
+        horoscopeId = intent.getStringExtra("HOROSCOPE_ID")
+        horoscope = HoroscopeProvider().getHoroscope(horoscopeId!!)
 
         // Display the selected Zodiac sign
 
@@ -55,13 +61,13 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeDateTextView.text = date
 
-        // To display the API text of Zodiac signs
+        // Display the API text of Zodiac signs
 
         horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
 
-        horoscopeName = intent.getStringExtra("HOROSCOPE_NAME")
+        horoscopeId = intent.getStringExtra("HOROSCOPE_NAME")
 
-        horoscopeTextView.text = horoscopeName
+        horoscopeTextView.text = horoscopeId
 
         // Run coroutine
 
@@ -71,7 +77,7 @@ class DetailActivity : AppCompatActivity() {
     private fun getHoroscopeLuck() {
         CoroutineScope(Dispatchers.IO).launch {
             // Llamada en segundo plano
-            val result = HoroscopeProvider().getHoroscopeLuck(horoscopeName!!)
+            val result = HoroscopeProvider().getHoroscopeLuck(horoscopeId!!)
             runOnUiThread {
                 // Modificar UI
                 horoscopeLuckTextView.text = result
