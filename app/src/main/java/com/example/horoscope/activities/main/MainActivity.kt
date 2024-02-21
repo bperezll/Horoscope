@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
 
+        // Set up of recyclerView and adapter
+
         recyclerView = findViewById(R.id.recyclerView)
 
         horoscopeAdapter = HoroscopeAdapter(HoroscopeProvider.HoroscopeList().horoscopeList) {
@@ -51,9 +53,14 @@ class MainActivity : AppCompatActivity() {
             val searchView = searchItem.actionView as SearchView
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+                // Don't search until push button. If not needed, return false is mandatory
+
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
                 }
+
+                // Search while type, if empty show all the list, else filter list by string name
 
                 override fun onQueryTextChange(query: String?): Boolean {
                     horoscopeList = if (query.isNullOrEmpty()) {
@@ -61,13 +68,16 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         HoroscopeProvider.HoroscopeList().horoscopeList.filter { getString(it.name).contains(query, true) }
                     }
+
+                    // Update the list to all if empty, or to the ones containing the query
+
                     horoscopeAdapter.updateData(horoscopeList)
                     return true
                 }
             })
         }
     }
-
+    // This event will enable the back function to the button on press
     /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
