@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
                         HoroscopeProvider.HoroscopeList().horoscopeList
                     } else {
                         HoroscopeProvider.HoroscopeList().horoscopeList.filter { getString(it.name).contains(query, true) }
-                        //.filter { getString(it.name).contains(query, true) }
                     }
                     horoscopeAdapter.updateData(horoscopeList)
                     return true
@@ -92,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         // Intent to go to the DetailActivity
 
-        val horoscope:Horoscope = HoroscopeProvider.HoroscopeList().horoscopeList[position]
+        val horoscope:Horoscope = horoscopeList[position]
 
         val intent = Intent(this, DetailActivity::class.java)
 

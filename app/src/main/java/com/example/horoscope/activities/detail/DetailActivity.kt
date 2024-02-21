@@ -34,6 +34,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() {
 
+        // Get the ID of every Zodiac sign
+
         horoscopeId = intent.getStringExtra("HOROSCOPE_ID")
         horoscope = HoroscopeProvider().getHoroscope(horoscopeId!!)
 
