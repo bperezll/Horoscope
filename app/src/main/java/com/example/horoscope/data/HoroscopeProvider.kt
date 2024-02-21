@@ -29,7 +29,7 @@ class HoroscopeProvider {
     }
 
     fun getHoroscope(id: String): Horoscope {
-        return HoroscopeList().horoscopeList.first { it.id == id }
+        return HoroscopeList().horoscopeList.filter { it.id == id }.first()
     }
 
     suspend fun getHoroscopeLuck(horoscopeId: String): String? {

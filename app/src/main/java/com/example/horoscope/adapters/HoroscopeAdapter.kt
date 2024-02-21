@@ -1,5 +1,6 @@
 package com.example.horoscope.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.horoscope.R
 import com.example.horoscope.data.Horoscope
 
-class HoroscopeAdapter(private val items:List<Horoscope> = listOf(), val onClickListener : (position:Int) -> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
+class HoroscopeAdapter(private var items:List<Horoscope> = listOf(), val onClickListener : (position:Int) -> Unit) : RecyclerView.Adapter<HoroscopeViewHolder>() {
+
+    // Update items on Search
+    fun updateData(list :List<Horoscope>) {
+        this.items = list
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoroscopeViewHolder {
         val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_horoscope, parent, false)
         return HoroscopeViewHolder(view)

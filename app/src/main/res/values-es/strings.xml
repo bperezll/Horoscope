@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Horóscopo</string>
     <string name="zodiac_list_title">Lista del zodiaco</string>
+    <string name="menu_search">Buscar</string>
     <string name="horoscope_name_aries">Aries</string>
     <string name="horoscope_date_aries">21 de marzo al 19 de abril</string>
     <string name="horoscope_name_taurus">Tauro</string>

@@ -3,17 +3,23 @@ package com.example.horoscope.activities.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.horoscope.R
 import com.example.horoscope.activities.detail.DetailActivity
 import com.example.horoscope.adapters.HoroscopeAdapter
 import com.example.horoscope.data.Horoscope
+import com.example.horoscope.data.Horoscope.Aquarius.name
 import com.example.horoscope.data.HoroscopeProvider
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var adapter:HoroscopeAdapter
+    private var horoscopeList = HoroscopeProvider.HoroscopeList().horoscopeList
+
+    private lateinit var horoscopeAdapter:HoroscopeAdapter
 
     private lateinit var  recyclerView:RecyclerView
 
@@ -29,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
 
-        adapter = HoroscopeAdapter(HoroscopeProvider.HoroscopeList().horoscopeList) {
+        horoscopeAdapter = HoroscopeAdapter(HoroscopeProvider.HoroscopeList().horoscopeList) {
             onItemClickListener(it)
         }
 
@@ -37,7 +43,49 @@ class MainActivity : AppCompatActivity() {
 
         //recyclerView.layoutManager = GridLayoutManager(this, 2)
 
-        recyclerView.adapter = adapter
+        recyclerView.adapter = horoscopeAdapter
+    }
+
+    private fun initSearchView(searchItem: MenuItem?) {
+        if (searchItem != null) {
+            val searchView = searchItem.actionView as SearchView
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(query: String?): Boolean {
+                    horoscopeList = if (query.isNullOrEmpty()) {
+                        HoroscopeProvider.HoroscopeList().horoscopeList
+                    } else {
+                        HoroscopeProvider.HoroscopeList().horoscopeList.filter { getString(it.name).contains(query, true) }
+                        //.filter { getString(it.name).contains(query, true) }
+                    }
+                    horoscopeAdapter.updateData(horoscopeList)
+                    return true
+                }
+            })
+        }
+    }
+
+    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }*/
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.horoscope_menu, menu)
+
+        initSearchView(menu?.findItem(R.id.menu_search))
+
+        return true
     }
 
     private fun onItemClickListener(position:Int) {
