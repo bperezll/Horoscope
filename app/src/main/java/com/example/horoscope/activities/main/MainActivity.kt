@@ -1,10 +1,10 @@
 package com.example.horoscope.activities.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +12,6 @@ import com.example.horoscope.R
 import com.example.horoscope.activities.detail.DetailActivity
 import com.example.horoscope.adapters.HoroscopeAdapter
 import com.example.horoscope.data.Horoscope
-import com.example.horoscope.data.Horoscope.Aquarius.name
 import com.example.horoscope.data.HoroscopeProvider
 
 class MainActivity : AppCompatActivity() {

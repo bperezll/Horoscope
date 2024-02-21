@@ -1,6 +1,5 @@
 package com.example.horoscope.activities.detail
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
@@ -8,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.horoscope.R
 import com.example.horoscope.data.Horoscope
-import com.example.horoscope.data.Horoscope.Aquarius.image
 import com.example.horoscope.data.HoroscopeProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
