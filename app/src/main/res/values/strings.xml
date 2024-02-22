@@ -2,6 +2,8 @@
     <string name="app_name">Horoscope</string>
     <string name="zodiac_list_title">Zodiac list</string>
     <string name="menu_search">Search</string>
+    <string name="menu_previous">Previous</string>
+    <string name="menu_next">Next</string>
     <string name="horoscope_name_aries">Aries</string>
     <string name="horoscope_date_aries">March 21 – April 19</string>
     <string name="horoscope_name_taurus">Taurus</string>

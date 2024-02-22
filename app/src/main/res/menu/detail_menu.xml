@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/btnPrev"
+        android:title="@string/menu_previous"
+        android:icon="@drawable/ic_prev"
+        app:showAsAction="collapseActionView|always">
+    </item>
+    <item
+        android:id="@+id/btnNext"
+        android:title="@string/menu_next"
+        android:icon="@drawable/ic_next"
+        app:showAsAction="collapseActionView|ifRoom">
+    </item>
+</menu>
