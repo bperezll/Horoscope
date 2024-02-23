@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/horoscopeImageView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         tools:src="@drawable/ic_aquarius"
         android:background="@color/purple_500"
         app:layout_constraintTop_toTopOf="parent"
