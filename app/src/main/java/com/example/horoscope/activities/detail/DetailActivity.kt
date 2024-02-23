@@ -22,17 +22,12 @@ class DetailActivity : AppCompatActivity() {
 
     private var horoscopeId:String? = null
 
-    private lateinit var horoscope: Horoscope
+    private lateinit var horoscope:Horoscope
 
     private lateinit var horoscopeTextView:TextView
     private lateinit var horoscopeImageView:ImageView
     private lateinit var horoscopeLuckTextView:TextView
     private lateinit var horoscopeDateTextView:TextView
-
-    // Botones prev y next
-
-    private lateinit var btnPrev:Item
-    private lateinit var btnNext:Item
 
     private var detailNavigation:Int = -1
 
@@ -50,6 +45,7 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeId = intent.getStringExtra("HOROSCOPE_ID")
         horoscope = HoroscopeProvider().getHoroscope(horoscopeId!!)
+        detailNavigation = HoroscopeProvider().getHoroscopeIndex(horoscope)
 
         // Display the selected Zodiac sign
 
@@ -70,23 +66,30 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
         horoscopeTextView.text = horoscopeId
-
-        //horoscope = HoroscopeProvider().getHoroscope(detailNavigation)//HoroscopeList(get).horoscopeList[horoscope]
-
-        //detailNavigation = HoroscopeProvider().getHoroscopeIndex(horoscope)
-
-        detailNavigation = HoroscopeProvider().getHoroscopeIndex(horoscope)
-
-        // Run coroutine
-        //getHoroscopeLuck()
     }
 
-    /*private fun loadData() {
-        detailNavigation = HoroscopeProvider().getHoroscopeIndex(horoscope)
+    private fun loadData() {
+        horoscope = HoroscopeProvider().getHoroscope(detailNavigation)
 
+        horoscopeTextView.text = getString(horoscope.name)
+        horoscopeImageView.setImageResource(horoscope.image)
+        horoscopeDateTextView.text = getString(horoscope.date)
 
+        // Run coroutine
         getHoroscopeLuck()
-    }*/
+    }
+
+    private fun getHoroscopeLuck() {
+        horoscopeLuckTextView.text = ""
+        CoroutineScope(Dispatchers.IO).launch {
+            // Llamada en segundo plano
+            val result = HoroscopeProvider().getHoroscopeLuck(horoscope.id)
+            runOnUiThread {
+                // Modificar UI
+                horoscopeLuckTextView.text = result
+            }
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -98,33 +101,6 @@ class DetailActivity : AppCompatActivity() {
         return true
     }
 
-    private fun getHoroscopeLuck() {
-        CoroutineScope(Dispatchers.IO).launch {
-            // Llamada en segundo plano
-            val result = HoroscopeProvider().getHoroscopeLuck(horoscopeId!!)
-            runOnUiThread {
-                // Modificar UI
-                horoscopeLuckTextView.text = result
-            }
-        }
-    }
-
-
-        //horoscope = HoroscopeProvider().getHoroscope(detailNavigation)
-        //detailNavigation = HoroscopeProvider().getHoroscopeIndex(horoscope)
-        //getHoroscopeLuck()
-
-
-    private fun loadData() {
-        horoscope = HoroscopeProvider().getHoroscope(detailNavigation)
-
-        horoscopeTextView.text = getString(horoscope.name)
-        horoscopeImageView.setImageResource(horoscope.image)
-        //horoscopeDateTextView.text = getString(horoscope.date)
-        //horoscopeTextView.text = horoscopeId
-
-        getHoroscopeLuck()
-    }
 
     // This event will enable the back function to the button on press
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
