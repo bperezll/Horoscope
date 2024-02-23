@@ -1,7 +1,5 @@
 package com.example.horoscope.activities.detail
 
-import android.content.ClipData.Item
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -20,7 +18,9 @@ import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
 
-    // To use with coroutine for the API text
+    companion object {
+        const val EXTRA_ID = "HOROSCOPE_ID"
+    }
 
     private var horoscopeId:String? = null
 
@@ -34,6 +34,8 @@ class DetailActivity : AppCompatActivity() {
 
     private var detailNavigation:Int = -1
 
+    private var isFavorite:Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -46,7 +48,7 @@ class DetailActivity : AppCompatActivity() {
 
         // Get the ID of every Zodiac sign, only intent needed
 
-        horoscopeId = intent.getStringExtra("HOROSCOPE_ID")
+        horoscopeId = intent.getStringExtra(EXTRA_ID)
         horoscope = HoroscopeProvider().getHoroscope(horoscopeId!!)
         detailNavigation = HoroscopeProvider().getHoroscopeIndex(horoscope)
 
@@ -73,6 +75,8 @@ class DetailActivity : AppCompatActivity() {
         // Load the progress bar from resources
 
         progress = findViewById(R.id.progress)
+
+        //
     }
 
     private fun loadData() {
