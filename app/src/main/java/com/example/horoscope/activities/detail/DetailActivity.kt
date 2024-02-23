@@ -5,7 +5,9 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +30,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var horoscopeImageView:ImageView
     private lateinit var horoscopeLuckTextView:TextView
     private lateinit var horoscopeDateTextView:TextView
+    private lateinit var progress:ProgressBar
 
     private var detailNavigation:Int = -1
 
@@ -66,6 +69,10 @@ class DetailActivity : AppCompatActivity() {
 
         horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
         horoscopeTextView.text = horoscopeId
+
+        // Load the progress bar from resources
+
+        progress = findViewById(R.id.progress)
     }
 
     private fun loadData() {
@@ -80,6 +87,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getHoroscopeLuck() {
+        progress.visibility = View.VISIBLE // Show progress bar
         horoscopeLuckTextView.text = ""
         CoroutineScope(Dispatchers.IO).launch {
             // Llamada en segundo plano
@@ -87,6 +95,7 @@ class DetailActivity : AppCompatActivity() {
             runOnUiThread {
                 // Modificar UI
                 horoscopeLuckTextView.text = result
+                progress.visibility = View.GONE // When result is loaded, progress bar visibility is gone
             }
         }
     }
