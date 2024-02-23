@@ -101,15 +101,17 @@ class DetailActivity : AppCompatActivity() {
         return true
     }
 
-
-    // This event will enable the back function to the button on press
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        // This event will enable the back function to the button on press
 
         when (item.itemId) {
             android.R.id.home -> {
                 finish()
                 return true
             }
+
+            // Previous navigation between Zodiac signs
 
             R.id.btnPrev -> {
                 if (detailNavigation == 0) {
@@ -119,21 +121,19 @@ class DetailActivity : AppCompatActivity() {
                 loadData()
                 return true
             }
-            /*R.id.btnNext -> {
-                detailNavigation ++
-                if (detailNavigation == HoroscopeProvider.HoroscopeList().horoscopeList.size) {
-                        detailNavigation = 0
+
+            // Next navigation between Zodiac signs
+
+            R.id.btnNext -> {
+                if (detailNavigation == 0) {
+                    detailNavigation = HoroscopeProvider.HoroscopeList().horoscopeList.size
                 }
-
-                horoscope = HoroscopeProvider.HoroscopeList().horoscopeList[detailNavigation]
-
+                detailNavigation++
+                loadData()
                 return true
-            }*/
-            //R.id.btnPrev -> detailNavigation--
-            //R.id.btnNext -> detailNavigation++
-
-
+            }
         }
+
         return super.onOptionsItemSelected(item)
     }
 
